@@ -10,9 +10,12 @@ using Zoo.Domain.V1.Request;
 using Zoo.Domain.V1.Response;
 using Zoo.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Zoo.Controllers.V1
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class AnimalController : Controller
     {
         private readonly DataContext _context;

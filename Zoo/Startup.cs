@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,7 +20,7 @@ using Microsoft.IdentityModel.Tokens;
 using Zoo.Data;
 using Zoo.Options;
 using Zoo.Installer;
-using System.Text;
+using Zoo.Services;
 
 namespace Zoo
 {
@@ -40,9 +41,23 @@ namespace Zoo
             services.AddControllersWithViews();
             services.AddRazorPages();
             //start JWT
+            services.AddScoped<IIdentityService, IdentityService>();
+
             var jwtSettings = new JwtSettings();
             Configuration.Bind(nameof(jwtSettings), jwtSettings);
             services.AddSingleton(jwtSettings);
+
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSettings.Secret)),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                RequireExpirationTime = false,
+                ValidateLifetime = true
+            };
+
+            services.AddSingleton(tokenValidationParameters);
 
             services.AddAuthentication(x =>
             {
@@ -53,15 +68,7 @@ namespace Zoo
               .AddJwtBearer(x =>
               {
                   x.SaveToken = true;
-                  x.TokenValidationParameters = new TokenValidationParameters
-                  {
-                      ValidateIssuerSigningKey = true,
-                      IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSettings.Secret)),
-                      ValidateIssuer = false,
-                      ValidateAudience = false,
-                      RequireExpirationTime = false,
-                      ValidateLifetime = true
-                  };
+                  x.TokenValidationParameters = tokenValidationParameters;
               });
             //end JWT
         }

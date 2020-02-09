@@ -16,5 +16,7 @@ namespace Zoo.Installer
 
             installers.ForEach(installer => installer.InstallServices(services, configuration));
         }
+
+
     }
 }

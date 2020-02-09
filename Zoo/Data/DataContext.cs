@@ -13,11 +13,13 @@ namespace Zoo.Data
         public DataContext(DbContextOptions<DataContext> options)
             : base(options)
         {
-            //Database.EnsureCreated();   
+            //Database.EnsureCreated();
+            Database.Migrate();
         }
 
         public DbSet<Animal> Animals { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

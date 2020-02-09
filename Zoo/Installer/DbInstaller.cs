@@ -19,6 +19,7 @@ namespace Zoo.Installer
                  options.UseSqlServer(
                      configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<DataContext>();
         }
     }
