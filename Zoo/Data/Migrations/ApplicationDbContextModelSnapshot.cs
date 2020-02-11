@@ -245,6 +245,24 @@ namespace Zoo.Data.Migrations
                     b.ToTable("Animals");
                 });
 
+            modelBuilder.Entity("Zoo.Domain.EARelation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AnimalId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EARelations");
+                });
+
             modelBuilder.Entity("Zoo.Domain.Employee", b =>
                 {
                     b.Property<int>("Id")

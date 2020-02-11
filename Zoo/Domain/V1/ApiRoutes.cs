@@ -26,6 +26,32 @@ namespace Zoo.Domain.V1
             public const string Create = Base + "/CreateAnimal";
         }
 
+        public static class Employees
+        {
+            public const string GetAll = Base + "/GetAllEmployees";
+
+            public const string Get = Base + "/GetEmployee/{postId}";
+
+            public const string Update = Base + "/UpdateEmployee/{postId}";
+
+            public const string Delete = Base + "/DeleteEmployee/{postId}";
+
+            public const string Create = Base + "/CreateEmployee";
+        }
+
+        public static class EARelations
+        {
+            public const string GetAll = Base + "/GetAllEARelations";
+
+            public const string Get = Base + "/GetEARelation/{postId}";
+
+            public const string Update = Base + "/UpdateEARelation/{postId}";
+
+            public const string Delete = Base + "/DeleteEARelation/{postId}";
+
+            public const string Create = Base + "/CreateEARelation";
+        }
+
         public static class Identity
         {
             public const string Login = Base + "/identity/login";

@@ -56,7 +56,6 @@ namespace Zoo.Controllers.V1
         {
             Animal animal = new Animal
             {
-                //Id = animalRequest.Id,
                 Name = animalRequest.Name,
                 Age = animalRequest.Age,
                 Color = animalRequest.Color,

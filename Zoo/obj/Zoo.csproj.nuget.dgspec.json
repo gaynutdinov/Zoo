@@ -62,9 +62,17 @@
               "target": "Package",
               "version": "[3.1.0, )"
             },
+            "Microsoft.Extensions.Logging.Debug": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
               "version": "[5.6.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.1, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
